@@ -1,4 +1,5 @@
 from movie import Movie
+import logging
 
 class Rental:
     """
