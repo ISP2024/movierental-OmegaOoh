@@ -25,8 +25,12 @@ class Customer:
         return self.name
     
     def get_total_amount(self):
-        """Return total rentals amount"""
+        """Return total rentals amount."""
         return reduce(lambda x,y: x+y.get_price(), self.rentals, 0)
+    
+    def get_total_rental_points(self):
+        """Return total rentals point."""
+        return reduce(lambda x,y: x+y.get_rental_points(), self.rentals, 0)
 
     def statement(self):
         """Create a statement of rentals for the current period.
@@ -37,7 +41,6 @@ class Customer:
         Returns:
             the statement as a String
         """
-        frequent_renter_points = 0
         # the .format method substitutes actual values into the fmt string
         statement = f"Rental Report for {self.name}\n\n"
         header_fmt = "{:40s}  {:6s} {:6s}\n"
@@ -45,8 +48,6 @@ class Customer:
         rental_fmt = "{:40s}  {:6d} {:6.2f}\n"
         
         for rental in self.rentals:
-            # compute the frequent renter points based on movie price code
-            frequent_renter_points += rental.get_rental_points()
             #  add a detail line to statement
             statement += rental_fmt.format(
                             rental.get_movie().get_title(), 
@@ -57,6 +58,6 @@ class Customer:
         statement += "\n"
         statement += "{:40s}  {:6s} {:6.2f}\n".format(
                       "Total Charges", "", self.get_total_amount())
-        statement += "Frequent Renter Points earned: {}\n".format(frequent_renter_points)
+        statement += "Frequent Renter Points earned: {}\n".format(self.get_total_rental_points())
 
         return statement
