@@ -3,6 +3,12 @@ import enum
 
 class PriceStrategy(ABC):
     """Abstract base class for rental pricing"""
+    _instance = None
+
+    def __new__(cls):
+        if not cls._instance:
+            cls._instance = super(PriceStrategy, cls).__new__(cls)
+        return cls._instance
 
     @abstractmethod
     def get_price(self, days: int) -> float:

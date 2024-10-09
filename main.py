@@ -21,6 +21,9 @@ if __name__ == '__main__':
     # Create a customer with some rentals
     customer = Customer("Edward Snowden")
     days = 1
+    m1 = Movie("Oppenheimer", Movie.REGULAR)
+    m2 = Movie("Particle Fever", Movie.REGULAR)
+    print(m1.get_price_code() is m2.get_price_code())
     for movie in make_movies():
         customer.add_rental(Rental(movie, days))
         days = (days + 2) % 5 + 1
