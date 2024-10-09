@@ -42,12 +42,7 @@ class Customer:
         
         for rental in self.rentals:
             # compute the frequent renter points based on movie price code
-            if rental.get_movie().get_price_code() == Movie.NEW_RELEASE:
-                # New release earns 1 point per day rented
-                frequent_renter_points += rental.get_days_rented()
-            else:
-                # Other rentals get only 1 point
-                frequent_renter_points += 1
+            frequent_renter_points += rental.get_rental_points()
             #  add a detail line to statement
             statement += rental_fmt.format(
                             rental.get_movie().get_title(), 
@@ -59,7 +54,7 @@ class Customer:
         # footer: summary of charges
         statement += "\n"
         statement += "{:40s}  {:6s} {:6.2f}\n".format(
-                     "Total Charges", "", total_amount)
+                      "Total Charges", "", total_amount)
         statement += "Frequent Renter Points earned: {}\n".format(frequent_renter_points)
 
         return statement
