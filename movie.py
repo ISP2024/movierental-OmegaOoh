@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 import enum
 
+
 class PriceStrategy(ABC):
     """Abstract base class for rental pricing"""
     _instance = None
@@ -20,6 +21,7 @@ class PriceStrategy(ABC):
         """The frequent renter points earned for this rental."""
         pass
 
+
 class RegularPrice(PriceStrategy):
     """Rental Pricing for Regular Movie."""
 
@@ -29,6 +31,8 @@ class RegularPrice(PriceStrategy):
     
     def get_rental_points(self, days: int) -> int:
         return 1
+
+
 class ChildrenPrice(PriceStrategy):
     """Rental Pricing for Children Movie."""
 
@@ -38,7 +42,8 @@ class ChildrenPrice(PriceStrategy):
     
     def get_rental_points(self, days: int) -> int:
         return 1
-    
+
+
 class NewPrice(PriceStrategy):
     """Rental Pricing for New Movie."""
 

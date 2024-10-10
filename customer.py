@@ -26,11 +26,11 @@ class Customer:
     
     def get_total_amount(self):
         """Return total rentals amount."""
-        return reduce(lambda x,y: x+y.get_price(), self.rentals, 0)
+        return reduce(lambda x, y: x+y.get_price(), self.rentals, 0)
     
     def get_total_rental_points(self):
         """Return total rentals point."""
-        return reduce(lambda x,y: x+y.get_rental_points(), self.rentals, 0)
+        return reduce(lambda x, y: x+y.get_rental_points(), self.rentals, 0)
 
     def statement(self):
         """Create a statement of rentals for the current period.
