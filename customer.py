@@ -19,15 +19,15 @@ class Customer:
         """Add a rental for this customer"""
         if rental not in self.rentals:
             self.rentals.append(rental)
-    
+
     def get_name(self):
         """Get the customer's name."""
         return self.name
-    
+
     def get_total_amount(self):
         """Return total rentals amount."""
         return reduce(lambda x, y: x+y.get_price(), self.rentals, 0)
-    
+
     def get_total_rental_points(self):
         """Return total rentals point."""
         return reduce(lambda x, y: x+y.get_rental_points(), self.rentals, 0)
@@ -35,9 +35,9 @@ class Customer:
     def statement(self):
         """Create a statement of rentals for the current period.
 
-        Print all the rentals in the current period, 
+        Print all the rentals in the current period,
         along with total charges and frequent renter points.
-        
+
         Returns:
             the statement as a String
         """
@@ -46,12 +46,12 @@ class Customer:
         header_fmt = "{:40s}  {:6s} {:6s}\n"
         statement += header_fmt.format("Movie Title", "  Days", " Price")
         rental_fmt = "{:40s}  {:6d} {:6.2f}\n"
-        
+
         for rental in self.rentals:
             #  add a detail line to statement
             statement += rental_fmt.format(
-                            rental.get_movie().get_title(), 
-                            rental.get_days_rented(), 
+                            rental.get_movie().get_title(),
+                            rental.get_days_rented(),
                             rental.get_price())
 
         # footer: summary of charges
