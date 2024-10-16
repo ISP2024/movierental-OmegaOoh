@@ -12,7 +12,7 @@ class Rental:
     For simplicity of this application only days_rented is recorded.
     """
 
-    def __init__(self, movie, days_rented): 
+    def __init__(self, movie, days_rented):
         """Initialize a new movie rental object for
         a movie with known rental period (daysRented).
         """
@@ -27,8 +27,8 @@ class Rental:
 
     def get_price(self) -> float:
         """Return rental price according to the movie type and duration."""
-        return self.get_movie().get_price(self.get_days_rented())
-    
+        return self.movie.get_price(self.get_days_rented())
+
     def get_rental_points(self):
         """Returns rental price customer got for this rental"""
-        return self.get_movie().get_rental_points(self.get_days_rented())
+        return self.movie.get_rental_points(self.get_days_rented())
