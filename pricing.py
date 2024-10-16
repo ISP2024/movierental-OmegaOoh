@@ -1,5 +1,7 @@
 """Strategy Class for pricing the movies"""
 from abc import ABC, abstractmethod
+from movie import Movie
+from datetime import datetime
 
 
 class PriceStrategy(ABC):
@@ -54,3 +56,19 @@ class NewPrice(PriceStrategy):
     def get_rental_points(self, days: int) -> int:
         """New release rentals earn 1 point for each day rented."""
         return days
+
+
+def get_price_code_for_movie(movie: Movie):
+    """
+    Get price code of the movie.
+
+    If the movie is release this year return NewPrice,
+    Otherwise if it has "Children" or "Childrens" genre return ChildrenPrice,
+    Otherwise return RegularPrice
+    """
+    if movie.year == datetime.year:
+        return NewPrice()
+    elif movie.is_genre("Children") or movie.is_genre("Childrens"):
+        return ChildrenPrice()
+    else:
+        return RegularPrice()

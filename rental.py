@@ -1,3 +1,4 @@
+from datetime import datetime
 from movie import Movie
 import pricing
 
@@ -13,18 +14,14 @@ class Rental:
     For simplicity of this application only days_rented is recorded.
     """
 
-    def __init__(self, movie: Movie,
-                 days_rented: int,
-                 price_code: pricing.PriceStrategy):
+    def __init__(self, movie: Movie, days_rented: int):
         """Initialize a new movie rental object for
         a movie with known rental period (daysRented).
         """
         if not isinstance(movie, Movie):
             raise TypeError("movie should be movie object")
         self.movie = movie
-        if not isinstance(price_code, pricing.PriceStrategy):
-            raise TypeError("price_code should be Pricing Strategy object")
-        self.price_code = price_code
+        self.price_code = self.get_price_for_movie()
         self.days_rented = days_rented
 
     def get_movie(self) -> Movie:
@@ -44,3 +41,18 @@ class Rental:
     def get_rental_points(self):
         """Returns rental price customer got for this rental"""
         return self.price_code.get_rental_points(self.get_days_rented())
+
+    def get_price_for_movie(self,) -> pricing.PriceStrategy:
+        """
+        Get price code of the movie.
+
+        If the movie is release this year return NewPrice,
+        Otherwise if it has "Children" or "Childrens" genre return ChildrenPrice,
+        Otherwise return RegularPrice
+        """
+        if self.movie.year == datetime.now().year:
+            return pricing.NewPrice()
+        elif self.movie.is_genre("Children") or self.movie.is_genre("Childrens"):
+            return pricing.ChildrenPrice()
+        else:
+            return pricing.RegularPrice()

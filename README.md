@@ -15,10 +15,10 @@ Before and after each refactoring you should **run the unit tests**.
 
 ## Rationale
 
-2.1. Feature Envy
-2.2. Single Responsibility Principle as the Movie class does not need to know how to calculate the rental price and rentals points, But Rentals class is responsible to handle the operation related to the rentals details including price and points.
+Code smells Feature Envy and Single Responsibility Principle as the Movie class does not need to know how to calculate the rental price and rentals points, But Rentals class is responsible to handle the operation related to the rentals details including price and points is suggested refactoring of `get_price_code`
+
+`get_price_for_movie` Implemented as Method of Rental Class according design principle, Rental class already need to store Movie(Low Coupling), The rental is only class that need to use price_code(High Cohesion). Rental is already responsible to storing and getting the price and rental points of movies(Single Responsibility ).
 
 ## Resources
 
 See [Resources](https://cpske.github.io/ISP/assignment/movierental/movierental-part1#resources) in the assignment description.
-

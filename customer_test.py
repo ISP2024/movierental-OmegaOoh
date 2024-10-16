@@ -16,27 +16,28 @@ class CustomerTest(unittest.TestCase):
         movies = list of some movies
         """
         self.c = Customer("Movie Mogul")
-        self.new_movie = Movie("Mulan", 2020, ["Action", "Adventure", "Drama"])
+        self.new_movie = Movie("Mulan", 2024, ["Action", "Adventure", "Drama"])
         self.regular_movie = Movie("CitizenFour", 2014, ["Biography",
                                                          "Documentary"])
         self.childrens_movie = Movie("Frozen", 2013, ["Adventure", "Comedy",
-                                                      "Fantasy", "Musical"])
+                                                      "Fantasy", "Musical",
+                                                      "Childrens"])
 
     def test_billing(self):
-        rental = Rental(self.new_movie, 5, pricing.NewPrice())
+        rental = Rental(self.new_movie, 5)
         self.c.add_rental(rental)
-        rental = Rental(self.regular_movie, 3, pricing.RegularPrice())
+        rental = Rental(self.regular_movie, 3)
         self.c.add_rental(rental)
-        rental = Rental(self.childrens_movie, 3, pricing.ChildrenPrice())
+        rental = Rental(self.childrens_movie, 3)
         self.c.add_rental(rental)
         self.assertEqual(self.c.get_total_amount(), 20)
 
     def test_total_rental_point(self):
-        rental = Rental(self.new_movie, 5, pricing.NewPrice())
+        rental = Rental(self.new_movie, 5)
         self.c.add_rental(rental)
-        rental = Rental(self.regular_movie, 3, pricing.RegularPrice())
+        rental = Rental(self.regular_movie, 3)
         self.c.add_rental(rental)
-        rental = Rental(self.childrens_movie, 3, pricing.ChildrenPrice())
+        rental = Rental(self.childrens_movie, 3)
         self.c.add_rental(rental)
         self.assertEqual(self.c.get_total_rental_points(), 7)
 
@@ -48,7 +49,7 @@ class CustomerTest(unittest.TestCase):
         self.assertIsNotNone(matches)
         self.assertEqual("0.00", matches[1])
         # add a rental
-        self.c.add_rental(Rental(self.new_movie, 4, pricing.NewPrice()))  # days
+        self.c.add_rental(Rental(self.new_movie, 4))  # days
         stmt = self.c.statement()
         matches = re.match(pattern, stmt.replace('\n', ''), flags=re.DOTALL)
         self.assertIsNotNone(matches)
