@@ -4,16 +4,17 @@
 from movie import Movie
 from rental import Rental
 from customer import Customer
+from pricing import NewPrice, RegularPrice, ChildrenPrice
 
 
 def make_movies():
     """Some sample movies."""
     movies = [
-        Movie("Air", Movie.NEW_RELEASE),
-        Movie("Oppenheimer", Movie.REGULAR),
-        Movie("Frozen", Movie.CHILDRENS),
-        Movie("Bitconned", Movie.NEW_RELEASE),
-        Movie("Particle Fever", Movie.REGULAR)
+        (Movie("Air"), NewPrice()),
+        (Movie("Oppenheimer"), RegularPrice()),
+        (Movie("Frozen"), ChildrenPrice()),
+        (Movie("Bitconned"), NewPrice()),
+        (Movie("Particle Fever"), RegularPrice())
     ]
     return movies
 
@@ -22,10 +23,7 @@ if __name__ == '__main__':
     # Create a customer with some rentals
     customer = Customer("Edward Snowden")
     days = 1
-    m1 = Movie("Oppenheimer", Movie.REGULAR)
-    m2 = Movie("Particle Fever", Movie.REGULAR)
-    print(m1.get_price_code() is m2.get_price_code())
     for movie in make_movies():
-        customer.add_rental(Rental(movie, days))
+        customer.add_rental(Rental(movie[0], days, movie[1]))
         days = (days + 2) % 5 + 1
     print(customer.statement())
