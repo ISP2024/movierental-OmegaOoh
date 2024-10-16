@@ -9,14 +9,24 @@ from pricing import NewPrice, RegularPrice, ChildrenPrice
 
 def make_movies():
     """Some sample movies."""
-    movies = [
-        (Movie("Air"), NewPrice()),
-        (Movie("Oppenheimer"), RegularPrice()),
-        (Movie("Frozen"), ChildrenPrice()),
-        (Movie("Bitconned"), NewPrice()),
-        (Movie("Particle Fever"), RegularPrice())
-    ]
+    movies = [(
+            Movie("Air", 2023, ["Drama", "Sport"]),
+            NewPrice()
+        ), (
+            Movie("Oppenheimer", 2023, ["Biography", "Drama", "History"]),
+            RegularPrice()
+        ), (
+            Movie("Frozen", 2013, ["Adventure", "Comedy", "Fantasy", "Musical"]),
+            ChildrenPrice()
+        ), (
+            Movie("Bitconned", 2024, ["Documentary"]),
+            NewPrice()
+        ), (
+            Movie("Particle Fever", 2013, ["Documentary"]),
+            RegularPrice()
+        )]
     return movies
+
 
 
 if __name__ == '__main__':

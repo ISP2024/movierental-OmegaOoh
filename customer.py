@@ -1,6 +1,5 @@
 from functools import reduce
 from rental import Rental
-from movie import Movie
 
 
 class Customer:
@@ -51,7 +50,7 @@ class Customer:
         for rental in self.rentals:
             #  add a detail line to statement
             statement += rental_fmt.format(
-                            rental.get_movie().get_title(),
+                            str(rental.get_movie()),
                             rental.get_days_rented(),
                             rental.get_price())
 

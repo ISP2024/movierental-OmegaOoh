@@ -16,9 +16,11 @@ class CustomerTest(unittest.TestCase):
         movies = list of some movies
         """
         self.c = Customer("Movie Mogul")
-        self.new_movie = Movie("Mulan")
-        self.regular_movie = Movie("CitizenFour")
-        self.childrens_movie = Movie("Frozen")
+        self.new_movie = Movie("Mulan", 2020, ["Action", "Adventure", "Drama"])
+        self.regular_movie = Movie("CitizenFour", 2014, ["Biography",
+                                                         "Documentary"])
+        self.childrens_movie = Movie("Frozen", 2013, ["Adventure", "Comedy",
+                                                      "Fantasy", "Musical"])
 
     def test_billing(self):
         rental = Rental(self.new_movie, 5, pricing.NewPrice())
