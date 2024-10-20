@@ -22,4 +22,5 @@ class TestMovieCatalog(unittest.TestCase):
     def test_get_movie(self):
         self.assertIsInstance(self.catalog.get_movie("The Dog"), Movie)
         self.assertIsNone(self.catalog.get_movie("A"))
+        self.assertIsNone(self.catalog.get_movie("Mulan", 1880))
         self.assertEqual("Mulan (2020)", str(self.catalog.get_movie("Mulan", 2020)))
